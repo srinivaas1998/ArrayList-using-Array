@@ -1,6 +1,8 @@
 
+
 import java.util.Arrays;
-public class Array_List {
+public class Array_List1 {
+	public int count=0;
 	private Object[] array;
 	private Object[] temp_array;
 	private int arr_index=0;
@@ -8,11 +10,11 @@ public class Array_List {
 		array=new Object[10];
 	}
 	
-	public void addArr(Object obj1) {
+	public void addArr(Object element) {
 		if(array.length-arr_index<=5) {
 			increaseArr();
 		}
-		array[arr_index++]=obj1;
+		array[arr_index++]=element;
 		
 	}
 	void increaseArr() {
@@ -26,13 +28,14 @@ public class Array_List {
 	int size() {
 		return arr_index;
 	}
+	
 	public Object getArr(int index){
-        	if(index < arr_index){
-            		return array[index];
-        	} else {
-            		throw new ArrayIndexOutOfBoundsException();
-        	}
-    	}
+        if(index < arr_index){
+            return array[index];
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+    }
 	
 	 public Object removeArr(int index){
 	        if(index < arr_index){
@@ -50,9 +53,17 @@ public class Array_List {
 	            throw new ArrayIndexOutOfBoundsException();
 	        }
 	         
+	    }
+	 private int length() {
+		 do {
+			 count=count+1;
+		 }while(array[count]!=null);
+		 
+		 return count;
 	 }
 	 public void display() {
-		 for(int i=0;i<array.length;i++) {
+		 int len=length();
+		 for(int i=0;i<len;i++) {
 			 if(array[i]!=null) {
 				 System.out.println(array[i]);
 			 }
@@ -61,8 +72,8 @@ public class Array_List {
 	 }
 	
 	public static void main(String[] args){
-	
-	Array_List1 list = new Array_List1();
+		Array_List1 list = new Array_List1();
+        
         list.addArr(Integer.valueOf(2));
         list.addArr(Integer.valueOf(3));
         list.addArr(Integer.valueOf(5));
@@ -70,10 +81,6 @@ public class Array_List {
         list.addArr(Integer.valueOf(7));
         list.addArr(Integer.valueOf(2));
         list.addArr(Integer.valueOf(67));
-        list.addArr(Integer.valueOf(57));
-        list.addArr(Integer.valueOf(72));
-        list.addArr(Integer.valueOf(74));
-        list.addArr(Integer.valueOf(74));
         list.addArr(Integer.valueOf(17));
         
         
@@ -95,12 +102,12 @@ public class Array_List {
         list.removeArr(2);
         System.out.println("The elements in the array after removal of an element is:");
         list.display();
-      
         System.out.println("");
     }
 
 
 }
+
 //Output
 /*
 The elements in the array are:
@@ -111,12 +118,8 @@ The elements in the array are:
 7
 2
 67
-57
-72
-74
-74
 17
-The size of the array is 12
+The size of the array is 8
 
 The elements in the array after addition of new element is:
 2
@@ -126,10 +129,6 @@ The elements in the array after addition of new element is:
 7
 2
 67
-57
-72
-74
-74
 17
 29
 
@@ -142,10 +141,6 @@ The elements in the array after removal of an element is:
 7
 2
 67
-57
-72
-74
-74
 17
 29
 
